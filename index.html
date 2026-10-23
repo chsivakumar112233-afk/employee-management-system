@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Employee Management System</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="brand"><span class="brand-mark">E</span><div><strong>Employeely</strong><small>Management portal</small></div></div>
+    <nav><a class="nav-link active" href="#dashboard">▦ <span>Dashboard</span></a><a class="nav-link" href="#employees">♙ <span>Employees</span></a></nav>
+    <div class="sidebar-bottom"><div class="avatar">AD</div><div><strong>Admin User</strong><small>Administrator</small></div></div>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <div><p class="eyebrow">WORKSPACE / OVERVIEW</p><h1>Employee dashboard</h1><p class="subheading">Manage your team, all in one place.</p></div>
+      <button class="primary" id="addEmployeeTop">＋ Add employee</button>
+    </header>
+
+    <section class="stats" aria-label="Employee statistics">
+      <article class="stat-card"><div class="stat-icon purple">♙</div><p>Total employees</p><strong id="totalCount">0</strong><small>People in your directory</small></article>
+      <article class="stat-card"><div class="stat-icon green">✓</div><p>Active employees</p><strong id="activeCount">0</strong><small>Currently active</small></article>
+      <article class="stat-card"><div class="stat-icon orange">◷</div><p>Departments</p><strong id="departmentCount">0</strong><small>Across your organization</small></article>
+      <article class="stat-card"><div class="stat-icon blue">＋</div><p>New this month</p><strong id="newCount">0</strong><small>Recently joined</small></article>
+    </section>
+
+    <section class="panel" id="employees">
+      <div class="panel-heading"><div><h2>Employee directory</h2><p>View, search, add and update employee details.</p></div><button class="primary" id="addEmployee">＋ Add employee</button></div>
+      <div class="toolbar"><label class="searchbox">⌕ <input id="searchInput" type="search" placeholder="Search name, email or ID..."></label><select id="departmentFilter" aria-label="Filter by department"><option value="">All departments</option><option>Engineering</option><option>Human Resources</option><option>Finance</option><option>Marketing</option><option>Sales</option><option>Operations</option><option>Design</option></select><select id="statusFilter" aria-label="Filter by status"><option value="">All statuses</option><option>Active</option><option>On Leave</option><option>Inactive</option></select></div>
+      <div class="table-wrap"><table><thead><tr><th>EMPLOYEE</th><th>DEPARTMENT</th><th>ROLE</th><th>JOINED DATE</th><th>STATUS</th><th>ACTIONS</th></tr></thead><tbody id="employeeRows"></tbody></table></div>
+      <div class="empty-state" id="emptyState" hidden><div class="empty-icon">♙</div><strong>No employees found</strong><p>Add an employee or change your search filters.</p></div>
+      <div class="table-footer"><span id="resultCount">Showing 0 employees</span><button class="text-button" id="clearFilters">Clear filters</button></div>
+    </section>
+    <footer>Employee Management System <span>•</span> Demo project</footer>
+  </main>
+
+  <dialog id="employeeDialog">
+    <form id="employeeForm">
+      <div class="dialog-heading"><div><p class="eyebrow">EMPLOYEE DETAILS</p><h2 id="dialogTitle">Add employee</h2></div><button type="button" class="close-button" id="closeDialog" aria-label="Close">×</button></div>
+      <input type="hidden" id="employeeId">
+      <div class="form-grid">
+        <label>Full name *<input id="fullName" required maxlength="80" placeholder="e.g. Priya Kumar"></label>
+        <label>Email address *<input id="email" type="email" required maxlength="120" placeholder="name@company.com"></label>
+        <label>Phone number<input id="phone" type="tel" maxlength="25" placeholder="+91 98765 43210"></label>
+        <label>Department *<select id="department" required><option value="">Choose department</option><option>Engineering</option><option>Human Resources</option><option>Finance</option><option>Marketing</option><option>Sales</option><option>Operations</option><option>Design</option></select></label>
+        <label>Job title *<input id="role" required maxlength="80" placeholder="e.g. Software Developer"></label>
+        <label>Joining date *<input id="joinDate" type="date" required></label>
+        <label>Status *<select id="status" required><option>Active</option><option>On Leave</option><option>Inactive</option></select></label>
+        <label>Monthly salary (₹)<input id="salary" type="number" min="0" step="1" placeholder="e.g. 35000"></label>
+      </div>
+      <p class="form-error" id="formError" role="alert"></p>
+      <div class="dialog-actions"><button type="button" class="secondary" id="cancelDialog">Cancel</button><button type="submit" class="primary">Save employee</button></div>
+    </form>
+  </dialog>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="script.js"></script>
+</body>
+</html>
